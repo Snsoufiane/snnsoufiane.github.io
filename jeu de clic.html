@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeu de clic interactif</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .score {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .timer {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .message {
+            font-size: 18px;
+            color: green;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Jeu de clic interactif</h1>
+        <p class="timer">Temps restant : <b id="time">10</b> secondes</p>
+        <p class="score">Score : <b id="score">0</b></p>
+        <input type="button" class="button" id="clickButton" onclick="incrementScore()" disabled value="Commencer">
+        <p class="message" id="message"></p>
+        <input type="button" class="button" onclick="startGame()" value="Demarer le jeu">
+    </div>
+
+    <script language="javascript">
+        var score = 0;
+        var timeLeft = 10;
+        var timer;
+
+        function incrementScore() {
+            score++;
+            document.getElementById('score').textContent = score;
+        }
+
+        function startGame() {
+            if (timer !== null) {
+                clearInterval(timer);
+            }
+            score = 0;
+            timeLeft = 10;
+            document.getElementById('score').textContent = score;
+            document.getElementById('time').textContent = timeLeft;
+            document.getElementById('message').textContent = '';
+            document.getElementById('clickButton').disabled = false;
+
+            timer = setInterval(() => {
+                timeLeft--;
+                document.getElementById('time').textContent = timeLeft;
+
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    endGame();
+                }
+            }, 1000);
+        }
+
+        function endGame() {
+            document.getElementById('clickButton').disabled = true;
+            document.getElementById('message').textContent = 'Temps écoulé ! Votre score final est de '+ score +' .';
+        }
+    </script>
+</body>
+</html>
