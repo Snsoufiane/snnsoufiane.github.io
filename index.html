@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeu de clic interactif</title>
+    <link rel="stylesheet" href="cssjeu.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Jeu de clic interactif</h1>
+        <p class="timer">Temps restant : <b id="time">10</b> secondes</p>
+        <p class="score">Score : <b id="score">0</b></p>
+        <input type="button" class="button" id="clickButton" onclick="incrementScore()" disabled value="Commencer">
+        <p class="message" id="message"></p>
+        <input type="button" class="button" onclick="startGame()" value="Demarer le jeu">
+    </div>
+
+    <script src="jsjeu.js"></script>
+</body>
+</html>
